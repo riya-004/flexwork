@@ -1,0 +1,25 @@
+#container.box{
+display: flex;
+width: 120px;
+height: 200px;
+flex-direction: row-reverse;
+}
+.box{
+    width: 25%;
+    height: auto;
+}
+.box:nth-child(1),
+.box:nth-child(3){
+    background-color: bisque;
+    
+
+}
+.box:nth-child(2),
+.box:nth-child(4){
+    background-color: chocolate;
+}
+img{
+    width: 100px;
+    height: 400px;
+}
+
