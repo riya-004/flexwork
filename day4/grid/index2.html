@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon Webpage</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+    }
+    .header {
+      background: orange;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      padding: 12px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 120px);
+      gap: 8px;
+      padding: 10px;
+    }
+    .box {
+      border: 1px solid #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      font-weight: bold;
+    }
+    .box1 {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+    }
+    .box2 {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+    }
+    .box3 {
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+    }
+    .box4 {
+      grid-column: 1 / 2;
+      grid-row: 3 / 5;
+    }
+    .line1 {
+      grid-column: 2 / 4;
+      grid-row: 2 / 3;
+    }
+    .box5 {
+      grid-column: 2 / 3;
+      grid-row: 3 / 4;
+    }
+    .box6 {
+      grid-column: 4 / 5;
+      grid-row: 3 / 5;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">Amazon Webpage</div>
+  <div class="grid">
+    <div class="box box1">1</div>
+    <div class="box box2">2</div>
+    <div class="box box3">3</div>
+    <div class="box box4">Box-4</div>
+    <div class="box line1">Line 1</div>
+    <div class="box box5">5</div>
+    <div class="box box6">Box-6</div>
+  </div>
+</body>
+</html>

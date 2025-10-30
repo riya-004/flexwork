@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Amazon Clone - Header</title>
+<style>
+/* ====== Reset & base ====== */
+* {box-sizing: border-box}
+html,body {margin:0;padding:0;font-family: Arial, Helvetica, sans-serif;background:#fff}
+a {color:inherit;text-decoration:none}
+
+/* ====== Header layout ====== */
+.header {
+  width:100%;
+  background:linear-gradient(180deg,#131921 0,#111827 100%);
+  color: #fff;
+  position: sticky;
+  top:0;
+  z-index: 999;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.02);
+}
+
+/* top small bar for deals or location */
+.header-top {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:6px 12px;
+  font-size:12px;
+  color:#ddd;
+}
+
+/* main header row */
+.header-main{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 12px;
+  max-width:1400px;
+  margin:0 auto;
+}
+
+/* logo */
+.logo {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-width:92px;
+}
+.logo .logo-img {
+  width:92px;
+  height:32px;
+  display:block;
+  background:linear-gradient(90deg,#ff9900,#ffd000);
+  color:#111;
+  font-weight:700;
+  font-size:18px;
+  line-height:32px;
+  text-align:center;
+  border-radius:4px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.3) inset;
+}
+
+/* location / deliver to */
+.location {
+  display:flex;
+  flex-direction:column;
+  font-size:12px;
+  color:#e6e6e6;
+  margin-left:6px;
+  cursor:pointer;
+}
+.location .line1 {font-size:11px;color:#bfbfbf}
+.location .line2 {font-weight:600;color:#fff}
+
+/* search area */
+.search {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  flex:1;
+  min-width:0; /* allow shrink */
+}
+.search .category {
+  background:#ddd;
+  padding:8px 10px;
+  border-radius:4px 0 0 4px;
+  border: none;
+  font-size:13px;
+  min-width:120px;
+}
+.search input[type="search"]{
+  flex:1;
+  padding:10px;
+  border:none;
+  font-size:14px;
+  outline:none;
+  min-width:0;
+}
+.search button.search-btn{
+  background:#febd69;
+  border:none;
+  padding:10px 14px;
+  border-radius:0 4px 4px 0;
+  cursor:pointer;
+  font-weight:700;
+}
+
+/* nav actions: account, orders, cart */
+.nav-actions{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  font-size:13px;
+  margin-left:12px;
+}
+.action {
+  color:#e6e6e6;
+  text-align:left;
+  cursor:pointer;
+  padding:6px 8px;
+  border-radius:4px;
+  position:relative;
+}
+.action .small {font-size:12px;color:#bfbfbf}
+.action .big {font-weight:700; font-size:14px}
+.cart {
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.cart-badge {
+  background:#f08804;
+  color:#111;
+  font-weight:700;
+  font-size:12px;
+  padding:2px 6px;
+  border-radius:12px;
+  min-width:24px;
+  text-align:center;
+}
+
+/* account dropdown */
+.dropdown {
+  position:absolute;
+  top:100%;
+  left:0;
+  background:#fff;
+  color:#111;
+  min-width:220px;
+  border-radius:6px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.25);
+  padding:10px;
+  display:none;
+  transform-origin:top;
+}
+.action[aria-expanded="true"] .dropdown {display:block}
+
+/* mobile styles */
+.mobile-toggle {
+  display:none;
+  background:transparent;
+  border:none;
+  color:#fff;
+  font-size:20px;
+  cursor:pointer;
+}
+@media (max-width:900px){
+  .location {display:none}
+  .search .category {display:none}
+  .header-main{padding:8px}
+  .mobile-toggle {display:block;margin-left:6px}
+  .nav-actions {display:none}
+  .nav-actions.mobile-open {display:flex;position:absolute;left:0;right:0;top:64px;background:#111;padding:8px 12px;border-top:1px solid rgba(255,255,255,0.04)}
+  .search {order:3;width:100%;margin-top:8px}
+  .logo{flex:0 0 auto}
+}
+
+/* small nav under header: categories (like Amazon) */
+.header-bottom {
+  background:linear-gradient(180deg,#0f1720 0,#0c1318);
+  color:#d6d6d6;
+  font-size:13px;
+  padding:8px 12px;
+}
+.header-bottom .menu {
+  max-width:1400px;
+  margin:0 auto;
+  display:flex;
+  gap:16px;
+  align-items:center;
+  overflow:auto;
+  white-space:nowrap;
+}
+
+/* focus states */
+a:focus, button:focus, input:focus {outline:3px solid rgba(255,185,0,0.25); outline-offset:2px;}
+
+/* small helpers */
+.icon {display:inline-block;vertical-align:middle}
+.hidden {display:none}
+</style>
+</head>
+<body>
+
+<header class="header" role="banner">
+  <div class="header-top" aria-hidden="true">
+    <div>Deliver to <strong>India</strong></div>
+    <div style="margin-left:auto">Free delivery on orders over ₹499</div>
+  </div>
+
+  <div class="header-main" role="navigation" aria-label="Main navigation">
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+
+    <a class="logo" href="#" aria-label="Home">
+      <div class="logo-img">amazon</div>
+    </a>
+
+    <div class="location" tabindex="0" aria-label="Deliver to location">
+      <div class="line1">Deliver to</div>
+      <div class="line2">Ria — New Delhi</div>
+    </div>
+
+    <div class="search" role="search" aria-label="Site search">
+      <select class="category" aria-label="Search category">
+        <option value="all">All</option>
+        <option value="books">Books</option>
+        <option value="electronics">Electronics</option>
+        <option value="clothing">Clothing</option>
+      </select>
+      <input id="searchInput" type="search" placeholder="Search Amazon clone" aria-label="Search" />
+      <button class="search-btn" id="searchBtn" aria-label="Search">Search</button>
+    </div>
+
+    <div class="nav-actions" id="navActions">
+      <div class="action account" id="accountBtn" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
+        <div class="small">Hello, Sign in</div>
+        <div class="big">Account & Lists ▾</div>
+        <div class="dropdown" role="menu" aria-label="Account menu">
+          <a href="#" role="menuitem">Your Account</a><br/>
+          <a href="#" role="menuitem">Your Orders</a><br/>
+          <a href="#" role="menuitem">Your Recommendations</a>
+        </div>
+      </div>
+
+      <a class="action" href="#" aria-label="Returns & Orders">
+        <div class="small">Returns</div>
+        <div class="big">& Orders</div>
+      </a>
+
+      <a class="action cart" href="#" aria-label="Cart" id="cartBtn">
+        <svg class="icon" width="28" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path fill="#FFF" d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2zM7.16 14h9.17c.75 0 1.4-.49 1.6-1.2l1.96-6.6A1 1 0 0 0 19.9 5H5.21L4.27 2H1v2h2l3.6 8.59L6.25 14z"/>
+        </svg>
+        <div class="cart-badge" id="cartCount">0</div>
+        <div class="small" style="margin-left:4px">Cart</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="header-bottom" aria-hidden="false">
+    <div class="menu">
+      <a href="#">All</a>
+      <a href="#">Today's Deals</a>
+      <a href="#">Customer Service</a>
+      <a href="#">Gift Cards</a>
+      <a href="#">Sell</a>
+      <a href="#">Registry</a>
+      <a href="#">Electronics</a>
+      <a href="#">Prime</a>
+    </div>
+  </div>
+</header>
+
+<script>
+/* ====== Minimal interactivity for header ====== */
+(function(){
+  const accountBtn = document.getElementById('accountBtn');
+  const mobileToggle = document.getElementById('mobileToggle');
+  const navActions = document.getElementById('navActions');
+  const cartCount = document.getElementById('cartCount');
+  const searchInput = document.getElementById('searchInput');
+  const searchBtn = document.getElementById('searchBtn');
+
+  // Account dropdown keyboard & click toggling
+  accountBtn.addEventListener('click', toggleAccount);
+  accountBtn.addEventListener('keydown', (ev)=>{
+    if(ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); toggleAccount(); }
+    if(ev.key === 'Escape') { closeAccount(); accountBtn.focus(); }
+  });
+
+  function toggleAccount(){
+    const expanded = accountBtn.getAttribute('aria-expanded') === 'true';
+    accountBtn.setAttribute('aria-expanded', String(!expanded));
+  }
+  function closeAccount(){
+    accountBtn.setAttribute('aria-expanded','false');
+  }
+  // close dropdown when clicking outside
+  document.addEventListener('click', (e)=>{
+    if(!accountBtn.contains(e.target)) closeAccount();
+  });
+
+  // Mobile menu toggle
+  mobileToggle.addEventListener('click', ()=>{
+    const open = mobileToggle.getAttribute('aria-expanded') === 'true';
+    mobileToggle.setAttribute('aria-expanded', String(!open));
+    navActions.classList.toggle('mobile-open');
+    // ensure nav actions accessible on mobile by toggling aria-hidden
+    navActions.setAttribute('aria-hidden', String(open));
+  });
+
+  // Demo search handler (prevent real navigation)
+  searchBtn.addEventListener('click', (e)=>{
+    e.preventDefault();
+    const q = searchInput.value.trim();
+    if(!q) { alert('Type something to search.'); searchInput.focus(); return; }
+    alert('Searching for: ' + q + '\\n(This is a demo handler.)');
+  });
+
+  // Example function to update cart count (simulate adding items)
+  window.updateCartCount = function(n){
+    const count = Number(cartCount.textContent)||0;
+    const next = Math.max(0, count + Number(n));
+    cartCount.textContent = next;
+    // small animation
+    cartCount.animate([{transform:'scale(1)'},{transform:'scale(1.2)'},{transform:'scale(1)'}], {duration:220});
+  }
+
+  // For demo: click cart to increase count (remove in production)
+  document.getElementById('cartBtn').addEventListener('click', (e)=>{
+    e.preventDefault();
+    updateCartCount(1);
+  });
+
+  // close account dropdown with Escape globally
+  document.addEventListener('keydown', (ev)=> {
+    if(ev.key === 'Escape') closeAccount();
+  });
+
+})();
+</script>
+
+<!--
+USAGE NOTES:
+- This header is self-contained. Replace the "amazon" logo block with an <img> for a real logo.
+- Mobile behaviors: the hamburger toggles the right-side actions into a mobile panel.
+- The global function `updateCartCount(n)` is provided to programmatically change cart quantity.
+-->
+</body>
+</html>
